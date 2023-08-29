@@ -1,11 +1,46 @@
-/**
-* Template Name: Presento - v3.7.0
-* Template URL: https://bootstrapmade.com/presento-bootstrap-corporate-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 (function() {
   "use strict";
+
+
+  
+let text; // for speech synthesis
+
+const time = new Date().getHours();
+if (time < 12) {
+  text = " Good morning, Thanks for dropping by. We're excited to have you. Take a look around and find what you need. If you have questions, just contact us. Enjoy your time here!";
+} else if (time < 16) {
+  text = " Good afternoon, Thanks for dropping by. We're excited to have you. Take a look around and find what you need. If you have questions, just contact us. Enjoy your time here!";
+} 
+else if (time < 18) {
+  text = " Good day, Thanks for dropping by. We're excited to have you. Take a look around and find what you need. If you have questions, just contact us. Enjoy your time here!";
+} else {
+  text = " Good evening, Thanks for dropping by. We're excited to have you. Take a look around and find what you need. If you have questions, just contact us. Enjoy your time here!";
+}
+  
+  
+  const speakNow = () => {
+  
+  // Check if Speech Synthesis supported
+  
+  if ("speechSynthesis" in window) {
+  
+  const msg = new SpeechSynthesisUtterance();
+  
+  msg.pitch = 0.7;
+  
+  msg.rate = 0.7;
+  
+  msg.text = text;
+  
+  window.speechSynthesis.speak(msg);
+  
+  } 
+  };
+  window.onload = speakNow()
+
+
+
 
   /**
    * Easy selector helper function

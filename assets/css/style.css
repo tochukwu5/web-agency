@@ -318,7 +318,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 10px;
   }
   #hero h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
   #hero h2 {
     font-size: 18px;
@@ -1094,7 +1094,7 @@ section {
   display: block;
   font-size: 13px;
   font-weight: 400;
-  color: #aaaaaa;
+  color: #363535;
 }
 .team .member .member-info p {
   font-style: italic;
