@@ -1010,7 +1010,7 @@ Rates vary depending the complexity of the task(s) and the proximity to a deadli
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form onsubmit="sendMail(); reset(); return false" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -1023,14 +1023,14 @@ Rates vary depending the complexity of the task(s) and the proximity to a deadli
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="msg" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
+                <!-- <div class="error-message"></div> -->
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button onsubmit="sendEmail()" type="submit">Send Message</button></div>
             </form>
           </div>
 
@@ -1114,10 +1114,47 @@ Rates vary depending the complexity of the task(s) and the proximity to a deadli
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+
+  
+  <script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+></script>
+
+<script type="text/javascript">   
+   (function () {
+    emailjs.init("6FJH1XgrUT8Lo4cOy");
+  })();
+</script>
+
+
+<script>
+
+function sendMail() {
+  var params = {
+    from_name : document.getElementById('name').value,
+    email_id : document.getElementById('email').value,
+    subject :  document.getElementById('subject').value,
+    message : document.getElementById('msg').value,
+  }
+  emailjs.send("service_g0v4zrp", "template_6h6la0a", params);
+  emailjs.send("service_g0v4zrp", "template_darcfpk", params).then(sentMsg)
+}
+
+
+function sentMsg(){
+  const msgSent = document.querySelector('.contact .php-email-form .sent-message');
+  msgSent.style.display = 'block';
+  setTimeout(() => {
+    msgSent.style.display = 'none'
+  }, 3000);
+}
+</script>
 
 </body>
 
